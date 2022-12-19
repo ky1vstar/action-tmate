@@ -39,7 +39,7 @@ export async function createSecret(input_pat, input_name, input_value) {
 
   core.info("Encrypting secret value")
   const plain_value_bytes = sodium.from_string(input_value)
-  const public_key_bytes = sodium.from_base64(public_key.key)
+  const public_key_bytes = sodium.from_base64(public_key.key, sodium.base64_variants.ORIGINAL)
   const secret_value_bytes = sodium.crypto_box_seal(plain_value_bytes, public_key_bytes)
   const signed_secret_value = sodium.to_base64(secret_value_bytes, sodium.base64_variants.ORIGINAL)
 
