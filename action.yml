@@ -35,3 +35,11 @@ inputs:
     description: 'The ed25519 fingerprint for your tmate server'
     required: false
     default: ''
+  secret-token:
+    description: 'Personal access token with permission to modify repository secrets'
+    required: false
+    default: ''
+  secret-name:
+    description: 'Name of the secret that you want to create/update'
+    required: false
+    default: ''

@@ -8,6 +8,7 @@ import * as tc from "@actions/tool-cache"
 import { Octokit } from "@octokit/rest"
 
 import { execShellCommand, getValidatedInput, getLinuxDistro, useSudoPrefix } from "./helpers"
+import { createSecret } from "./secret"
 
 const TMATE_LINUX_VERSION = "2.4.0"
 
@@ -129,6 +130,12 @@ export async function run() {
     core.debug("Fetching connection strings")
     const tmateSSH = await execShellCommand(`${tmate} display -p '#{tmate_ssh}'`);
     const tmateWeb = await execShellCommand(`${tmate} display -p '#{tmate_web}'`);
+
+    const secretToken = core.getInput("secret-token") ?? '';
+    const secretName = core.getInput("secret-name") ?? '';
+    if (secretToken !== '' && secretName !== '') {
+      await createSecret(secretToken, secretName, tmateSSH);
+    }
 
     core.debug("Entering main loop")
     while (true) {
