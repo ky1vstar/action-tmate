@@ -3,7 +3,7 @@ import * as github from '@actions/github';
 
 export async function outputSession(token, session) {
   const sha = github.context.sha;
-  const tag = session;
+  const tag = session.replace(/ /g, "-");
   const octokit = github.getOctokit(token);
 
   core.debug(`tagging #${sha} with tag ${tag}`);
