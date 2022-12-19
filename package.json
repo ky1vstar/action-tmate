@@ -24,8 +24,7 @@
     "@actions/core": "^1.4.0",
     "@actions/github": "^5.0.0",
     "@actions/tool-cache": "^1.7.1",
-    "@octokit/rest": "^18.9.0",
-    "libsodium-wrappers": "^0.7.10"
+    "@octokit/rest": "^18.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
